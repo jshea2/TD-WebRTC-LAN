@@ -16,7 +16,7 @@ This project uses TouchDesigner and WebRTC to stream one or more low-latency vid
 - This runs the app in the development mode.
 Open [http://localhost:80](http://localhost:80) or [http://webrtc.local](http://webrtc.local) to view it in your browser.
 
-- Ports can be assigned in the url using http://webrtc.local**/?port=450**
+- Ports can be assigned in the url using http://webrtc.local/?port=450
 
 The page will reload when you make changes.
 
