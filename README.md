@@ -3,7 +3,7 @@
 This project uses TouchDesigner and WebRTC to stream one or more low-latency video feeds to any web browser on the local network.
 
 <p float="left">
-  <img src="https://github.com/user-attachments/assets/d3101166-4d13-4943-a8e8-fd5d3194e31f" width="800" />
+  <img src="https://github.com/user-attachments/assets/d3101166-4d13-4943-a8e8-fd5d3194e31f" width="1000" />
 
   
   <img src="https://github.com/user-attachments/assets/8ad108e8-0219-4383-b212-a4daf1ac10ce" width="200" />
