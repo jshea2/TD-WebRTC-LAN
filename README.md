@@ -2,9 +2,11 @@
 
 This project uses TouchDesigner and WebRTC to stream one or more low-latency video feeds to any web browser on the local network.
 
-![Desktop UI](https://github.com/user-attachments/assets/d3101166-4d13-4943-a8e8-fd5d3194e31f)
-![Mobile UI 1](https://github.com/user-attachments/assets/8ad108e8-0219-4383-b212-a4daf1ac10ce)
-![Mobile UI 2](https://github.com/user-attachments/assets/0676a4bc-8d61-4118-ab31-9f56f45048a9)
+<p float="left">
+  <img src="https://github.com/user-attachments/assets/d3101166-4d13-4943-a8e8-fd5d3194e31f" width="200" />
+  <img src="https://github.com/user-attachments/assets/8ad108e8-0219-4383-b212-a4daf1ac10ce" width="200" />
+  <img src="https://github.com/user-attachments/assets/0676a4bc-8d61-4118-ab31-9f56f45048a9" width="200" />
+</p>
 
 ## Get the project running locally
 
