@@ -1,79 +1,68 @@
-import Container from '@mui/material/Container';
+import { useEffect } from "react";
 
-function MediaPanel(props) {
-    const { mouseDataChannel, keyboardDataChannel } = props;
+function MediaPanel({ fullscreen }) {
+	const wrapperStyle = {
+		height: "100%",
+		width: "100%",
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		backgroundColor: "black",
+	};
 
-	const componentStyle = {
-        backgroundColor: 'lightGrey'
-    }
+	const videoStyle = {
+		width: "100%",
+		height: "100%",
+		objectFit: "contain",
+		transform: "scaleX(-1)",
+	};
 
-    const videoStyle = {
-        transform: 'scaleX(-1)',
-		width: '100%'
-    }
-
-	// Send data on both mouse down and move to mock interactions on TD leapPaint
-	const sendMouseData = (event) => {
-		if (!mouseDataChannel) {
-			console.log('The dataChannel does not exist, aborting.')
-			return;
-		}
-
-		var msCont = document.getElementById('remoteVideo')
-		var comStyle = window.getComputedStyle(msCont, null);
-		var width = parseInt(comStyle.getPropertyValue("width"), 10);
-		var height = parseInt(comStyle.getPropertyValue("height"), 10);
-		
-		// Mouse event related to Derivatives JSON API
-		let mouseEventDict = {
-			lselect: event.buttons === 1 ? true : false,
-			mselect: event.buttons === 4 ? true : false,
-			rselect: event.buttons === 2 ? true : false,
-			insideu: 1 - (event.nativeEvent.offsetX / width),
-			insidev: 1 - (event.nativeEvent.offsetY / height)
-		}
-
-		if (mouseDataChannel.readyState === 'open') {
-			mouseDataChannel.send(
-				JSON.stringify(mouseEventDict)
-			);
-		}
+	function isMobile() {
+		return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 	}
 
-	const sendKeyboardData = (event) => {
-		let keyboardEventDict = {
-			type: event.type,
-			key: event.key,
-			code: event.code,
-			location: event.location,
-			repeat: event.repeat,
-			isComposing: event.isComposing,
-			ctrlKey: event.ctrlKey,
-			shiftKey: event.shiftKey,
-			altKey: event.altKey,
-			metaKey: event.metaKey
-		}
+	useEffect(() => {
+		const video = document.getElementById("remoteVideo");
 
-		if (keyboardDataChannel.readyState === 'open') {
-			keyboardDataChannel.send(JSON.stringify(keyboardEventDict));
-		}
-	}
+		const applyTransform = () => {
+			if (!video) return;
 
-	return <Container id="webRTCViewer" style={ componentStyle } disableGutters>
-		<video 
-			id="remoteVideo"
-			style={ videoStyle }
-			autoPlay
-			muted={ false }
-			controls={ false }
-			onMouseDown={ sendMouseData }
-			onMouseMove={ sendMouseData }
-			onMouseUp={ sendMouseData } 
-			onKeyDown={ sendKeyboardData }
-			tabIndex="1"
-		>
-		</video>
-	</Container>; 
+			const isFull = document.fullscreenElement || document.webkitFullscreenElement;
+
+			if (isMobile()) {
+				// iPhone fix: only flip in fullscreen
+				video.style.setProperty("transform", isFull ? "scaleX(-1)" : "none", "important");
+				console.log("This is mobile")
+			} else {
+				// Desktop: only flip in preview, not fullscreen
+				console.log("This is NOT mobile")
+				video.style.setProperty("transform", isFull ? "scaleX(-1)" : "none", "important");
+			}
+		};
+
+		applyTransform();
+
+		document.addEventListener("fullscreenchange", applyTransform);
+		document.addEventListener("webkitfullscreenchange", applyTransform);
+
+		return () => {
+			document.removeEventListener("fullscreenchange", applyTransform);
+			document.removeEventListener("webkitfullscreenchange", applyTransform);
+		};
+	}, []);
+
+
+	return (
+		<div style={wrapperStyle}>
+			<video
+				id="remoteVideo"
+				autoPlay
+				playsInline
+				muted={false}
+				style={videoStyle}
+			/>
+		</div>
+	);
 }
 
 export default MediaPanel;

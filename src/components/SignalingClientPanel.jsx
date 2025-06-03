@@ -22,6 +22,7 @@ function SignalingClientPanel(props) {
 		webRTCConnection,
 		setPortHandler,
 		setAddressHandler,
+		fullscreenButton
 	} = props;
 
 	const theme = useTheme();
@@ -138,6 +139,7 @@ function SignalingClientPanel(props) {
 					}
 				</List>
 			</Container>
+			{fullscreenButton}
 		</Container>
 	);
 }
