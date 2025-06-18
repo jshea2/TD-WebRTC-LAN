@@ -25,7 +25,9 @@ This project uses TouchDesigner and WebRTC to stream one or more low-latency vid
 - This runs the app in the development mode.
 Open [http://localhost:80](http://localhost:80) or [http://webrtc.local](http://webrtc.local) to view it in your browser.
 
-- Ports can be assigned in the url using http://webrtc.local/?port=450
+- NOTE: If you are running this server on a PC, *webrtc.local* will not work because it uses Bonjour (Mac only). However, the QR code will automatically detect your OS and use your computer's IP. 
+
+- Ports can be assigned in the url using http://webrtc.local/?port=450 or 192.168.0.68/?port=450 (Whatever your computer ip is)
 
 The page will reload when you make changes.
 
