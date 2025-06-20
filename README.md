@@ -3,7 +3,7 @@
 This project uses TouchDesigner and WebRTC to stream one or more low-latency video feeds to any web browser on the local network.
 
 <p float="left">
-  <img src="https://github.com/user-attachments/assets/30bf3ef1-13bf-4677-89e0-0c171da294eb" width="1000" />
+  <img src="https://github.com/user-attachments/assets/519059d1-6e12-4675-bbab-83451281ff69" width="1000" />
   <img src="https://github.com/user-attachments/assets/45ff4b84-375e-4ffb-8ca2-fc8af856f006" width="300" />
 
   
@@ -19,11 +19,10 @@ This project uses TouchDesigner and WebRTC to stream one or more low-latency vid
 - In Touchdesigner select `WebServer`
 -   Pulse `Get Network Adapter`
 -   Select desired Network Adapter from the dropdown parameter below
--   Pulse `Start Web Server`
--     If you are on Mac you will need to 'Allow' this in Privacy settings, then restart Web Server
-- This should give you a rendered view of the webpage in the `WebServer` comp to confim it is working
-- Toggle `Connect On Start` to automatically start the server on TouchDesigner project launch
-- `Stop Web Server` will kill the web server on port 5757
+-   Toggle On `Web Server`
+- This should give you a rendered view of the webpage in the `WebServer` comp to confirm it is working
+- `Restart Web Server` pulse will reload the webserver and update URLs in other comps if you select a different network 
+-   Toggle Off `Web Server` will kill the web server on port 5757
 
 ### 'WebRTC' Comp Configure
 - To configure the `WebRTC` comp, select and go to `Config` tab
