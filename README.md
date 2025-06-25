@@ -21,7 +21,12 @@ This project uses TouchDesigner and WebRTC to stream one or more low-latency vid
 
 
 
-## TouchDesigner setup
+##
+
+### Note ⚠️
+Make sure you are using Touchdesigner build 2023. I had issues using build 2022.
+
+## TouchDesigner Setup
 
 - Download the zip file `TDWebRTC_TD-Standalone` in Resources.
 - Open TouchDesigner file `WebRTC.toe`
