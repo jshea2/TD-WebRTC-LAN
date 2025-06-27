@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
@@ -49,6 +49,37 @@ function App() {
 			signalingClient.close();
 		};
 	}, []);
+
+	const autoStartTriggered = useRef(false);
+
+	useEffect(() => {
+		const params = new URLSearchParams(window.location.search);
+		const autoStart = params.get("start");
+
+		if (
+			autoStart === "true" &&
+			webSocketClients.length > 0 &&
+			webRTCConnection &&
+			signalingClient &&
+			!autoStartTriggered.current
+		) {
+			// Small timeout ensures React has rendered everything
+			console.log("POOOOOOOP")
+			setTimeout(() => {
+				const firstClient = webSocketClients[0];
+				if (firstClient?.address && firstClient?.properties) {
+					console.log("✅ Auto-starting call with:", firstClient.address);
+					webRTCConnection.onCallStart(firstClient.address, firstClient.properties);
+					webRTCConnection.onCallStart(address, properties)
+					autoStartTriggered.current = true;
+				}
+			}, 100); // 100ms delay to let state settle
+		}
+	}, [webSocketClients, webRTCConnection, signalingClient]);
+
+
+
+
 
 	return (
 		<Container id="tdApp" maxWidth="xl">

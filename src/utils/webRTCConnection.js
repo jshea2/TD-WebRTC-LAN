@@ -190,8 +190,62 @@ class WebRTCConnection {
     
     handleTrack(event) {
         console.log('[WEBRTC] New Track Event: ', event);
-        document.getElementById("remoteVideo").srcObject.addTrack(event.track);
+    
+        const remoteVideo = document.getElementById("remoteVideo");
+        const container = document.getElementById("fullscreenArea");
+    
+        const incomingStream = event.streams?.[0];
+        if (!incomingStream) {
+            console.warn("No incoming stream found in track event.");
+            return;
+        }
+    
+        remoteVideo.srcObject = incomingStream;
+    
+        const params = new URLSearchParams(window.location.search);
+        const autoStart = params.get("autostart") === "true";
+    
+        if (autoStart) {
+            remoteVideo.muted = true;
+    
+            const unmuteAndFullscreen = () => {
+                console.log('🔊 Unmuting and entering fullscreen');
+    
+                remoteVideo.muted = false;
+                remoteVideo.play();
+    
+                // Fullscreen request
+                if (container?.requestFullscreen) {
+                    container.requestFullscreen().catch(err => {
+                        console.warn("Fullscreen request failed:", err);
+                    });
+                } else if (remoteVideo?.webkitEnterFullscreen) {
+                    remoteVideo.webkitEnterFullscreen();
+                }
+    
+                // Remove listeners so it only runs once
+                remoteVideo.removeEventListener('click', unmuteAndFullscreen);
+                remoteVideo.removeEventListener('mousedown', unmuteAndFullscreen);
+                remoteVideo.removeEventListener('touchstart', unmuteAndFullscreen);
+            };
+    
+            remoteVideo.addEventListener('click', unmuteAndFullscreen);
+            remoteVideo.addEventListener('mousedown', unmuteAndFullscreen);
+            remoteVideo.addEventListener('touchstart', unmuteAndFullscreen);
+        } else {
+            remoteVideo.muted = false;
+        }
+    
+        remoteVideo.play().catch(err => {
+            console.warn('Autoplay may be blocked:', err);
+        });
     }
+    
+    
+    
+    
+    
+    
             
     handleRemoveTrack(event) {
         console.log('[WEBRTC] Remove track event: ', event);

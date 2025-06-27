@@ -2,13 +2,20 @@ import { useEffect } from "react";
 
 function MediaPanel({ fullscreen }) {
 	const wrapperStyle = {
-		height: "100%",
-		width: "100%",
+		position: "fixed",
+		top: 0,
+		left: 0,
+		width: "100vw",
+		height: "100vh",
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
 		backgroundColor: "black",
+		margin: 0,
+		padding: 0,
+		overflow: "hidden",
 	};
+
 
 	const videoStyle = {
 		width: "100%",

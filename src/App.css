@@ -1,3 +1,14 @@
+html,
+body,
+#root {
+    margin: 0;
+    padding: 0;
+    /* background-color: black; */
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+
 /* html,
 body,
 #root,

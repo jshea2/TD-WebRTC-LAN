@@ -19,11 +19,13 @@ const localIP = getLocalIP();
 
 export default defineConfig({
   plugins: [react()],
+  base: './', // 👈 THIS is the fix for blank pages when using file://
   server: {
     host: '0.0.0.0',
-    port: 80
+    port: 5757
   },
   define: {
     'import.meta.env.VITE_LOCAL_IP': JSON.stringify(localIP)
   }
 });
+
