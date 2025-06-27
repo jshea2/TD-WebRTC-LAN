@@ -2,6 +2,8 @@
 
 This project uses TouchDesigner and WebRTC to stream one or more low-latency video feeds to any web browser on the local network.
 
+## [Download Now](https://github.com/jshea2/TD-WebRTC-LAN/releases)
+
 
 <p float="left">
   <img src="https://github.com/user-attachments/assets/519059d1-6e12-4675-bbab-83451281ff69" width="700" />
@@ -24,7 +26,7 @@ This project uses TouchDesigner and WebRTC to stream one or more low-latency vid
 ##
 
 ### Note ⚠️
-Make sure you are using Touchdesigner build 2023. I had issues using build 2022.
+Make sure you are using Touchdesigner build 2023 or 2025 (Experimental). I had issues using build 2022.
 
 ## TouchDesigner Setup
 
@@ -60,6 +62,24 @@ Make sure you are using Touchdesigner build 2023. I had issues using build 2022.
 - **Show Port**
   - This displays the port number in the video feed for easy debugging
  
+### ✨ New Feature ✨ Autostart in Fullscreen
+
+<img src="https://github.com/user-attachments/assets/d417e7b6-5910-4d43-8cb3-07aeb5e64a6a" width="700" />
+
+- AutoStart in Fullscreen via URL query
+  - Example: `http://192.168.0.1/?port=450&autostart=true`
+
+- New Toggle Button in TouchDesigner for "Autostart in Fullscreen"
+Automatically updates the URL with the correct query string so you can open the page directly with the correct settings.
+
+- One-Click Unlock for system fullscreen and audio
+
+  - ⚠️ Browser Limitations
+    - Due to browser security policies, enabling `?autostart=true` will still require a single user interaction (click or tap) to fully activate audio and fullscreen. By default, the media starts muted and fills the browser window (not system       fullscreen). Once the user interacts (by tap or mouse click), audio un-mutes and true fullscreen is triggered.
+
+
+##
+
 ## Editing this project with a code editor
 
 - Clone this repository.
